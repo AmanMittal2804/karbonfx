@@ -1,7 +1,7 @@
 import React from 'react';
 import './Card.css'; 
 
-function Card ({  name, items, onButtonClick  }) {
+function Card ({ id, name, items, onDelete, onViewModal, onEdit  }) {
 
     const calculateColor = (age) => {
         if (age <= 18) {
@@ -12,8 +12,6 @@ function Card ({  name, items, onButtonClick  }) {
           return 'red';
         }
       };
-    
-      // Get the age from the items (assuming 'Age' is one of the keys)
       const ageItem = items.find((item) => Object.keys(item)[0] === 'Age');
       const age = ageItem ? Object.values(ageItem)[0] : '';
     
@@ -36,9 +34,9 @@ function Card ({  name, items, onButtonClick  }) {
       </div>
       <hr></hr>
       <div className="card-footer">
-        <button style={{backgroundColor:'red'}}onClick={() => onButtonClick('Button 1')}>Button 1</button>
-        <button onClick={() => onButtonClick('Button 2')}>Button 2</button>
-        <button onClick={() => onButtonClick('Button 3')}>Button 3</button>
+        <button style={{backgroundColor:'red'}} onClick={() => onDelete(id)}>Delete</button>
+          <button onClick={() => onViewModal(id)}>View</button>
+          <button onClick={() => onEdit(id)}>Edit</button>
       </div>
     </div>
   );

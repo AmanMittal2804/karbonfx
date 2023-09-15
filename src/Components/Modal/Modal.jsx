@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Modal.css';
 
-const Modal = ({ onClose }) => {
+const Modal = ({ onClose , onAddCard}) => {
   const [formData, setFormData] = useState({
     name: '',
     age: '',
@@ -33,6 +33,11 @@ const Modal = ({ onClose }) => {
       favoriteFoods: updatedFavoriteFoods,
     });
   };
+  
+  const handleAddCard = () => {
+    onAddCard(formData);
+    onClose();
+  };
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -41,7 +46,6 @@ const Modal = ({ onClose }) => {
           Close
         </button>
         <div className="modal-form">
-          <h2>Modal Content</h2>
           <form>
             <label>
               Name:
@@ -101,6 +105,9 @@ const Modal = ({ onClose }) => {
               <button type="button" onClick={handleAddFavoriteFood}>
                 Add Favorite Food
               </button>
+              <button type="button" onClick={handleAddCard}>
+            Add Card
+          </button>
             </label>
           </form>
         </div>
